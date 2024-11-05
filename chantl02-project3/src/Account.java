@@ -16,64 +16,91 @@
  * contains all the data and operations necessary for
  * transactions
  */
+import java.util.Random;    // Needed for the Random class
+import javax.swing.*;       // Needed for the JOptionPane class
+
 public class Account {
     // Variables declaration
     private double balance;
     private int pin;
-
-    /**
-     * Simply gets the pin
-     * @param accPin        Account pin
-     * @return              Returns the pin
-     */
-    public static int getPin(int accPin) {
-        return accPin;
-    } // end of getPin()
+    Random rand = new Random();
+    String title, message;
 
     /**
      * Assigns a pin in the format of a random four digit
      * number
      */
-    public static void createPin() {
+    public void createPin() {
+        pin = rand.nextInt(10000);
+    } // End of createPin()
 
-        
-    } // end of createPin()
+    /**
+     * Simply gets the account pin
+     * @return      Returns the pin
+     */
+    public int getPin() {
+        return pin;
+    } // End of getPin()
 
     /**
      * Takes accBalance and assigns the balance to it
-     * @param accBalance            Account balance
+     * @param accBalance        Account balance
      */
-    public static void setBalance(double accBalance) {
-
-
-    } // end of setBalance()
+    public void setBalance(double accBalance) {
+        this.balance = accBalance;
+    } // End of setBalance()
 
     /**
      * Will display the current balance after certain events
      */
-    public static void showBalance() {
+    public void showBalance() {
+        // Figure 8:
+        title = "Balance";
+        message = "The current balance is\n" + balance;
+        JOptionPane.showMessageDialog(null, message);
 
-    } // end of showBalance()
+        // Figure 13:
+        JOptionPane.showMessageDialog(null, message);
+    } // End of showBalance()
+
+    /**
+     * Takes a parameter for the deposit value and
+     * updates the balance
+     * @param uDeposit      User deposit
+     */
+    public void deposit(double uDeposit) {
+        this.balance = uDeposit;
+    } // End of deposit()
 
     /**
      * Takes a parameter for the withdrawn amount, updates the
      * balance, and if the parameter is greater than the balance,
      * it will print (in the console) that the required amount
      * exceeds the balance
+     * @param uWithdraw     User withdraw
      */
-    public static void withdraw() {
+    public void withdraw(double uWithdraw) {
+        this.balance = uWithdraw;
 
-
-    } // end of withdraw()
+        if (uWithdraw > this.balance) {
+            System.out.println("The required amount exceeds the balance."
+                                + "\nYou will now recieve your balance:");
+        }
+    } // End of withdraw()
 
     /*
-     * takes a paramater to initialize the balance, along with
-     * calling createPin()
+     * Takes a paramater to initialize the balance, calls 
+     * createPin(), and then displays the actual pin
      */
     public Account(double iDeposit) {
         this.balance = iDeposit;
         createPin();
-    } // end of Account()
+
+        // figure 3:
+        message = "Take note of your PIN:" +
+                    String.format("%4d", getPin());
+        JOptionPane.showMessageDialog(null, message);
+    } // End of Account()
 
     /**
      * Simply gets the account balance
@@ -81,6 +108,5 @@ public class Account {
      */
     public double getBalance() {
         return balance;
-
-    } // end of getBalance()
-} // end of Account
+    } // End of getBalance()
+} // End of Account
