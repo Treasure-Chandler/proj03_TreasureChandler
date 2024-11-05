@@ -12,23 +12,22 @@
 */
 
 /*
- * The Account class represents the user's bank accout. It
+ * The Account class represents the user's bank account. It
  * contains all the data and operations necessary for
  * transactions
  */
 public class Account {
     // Variables declaration
-    double balance;
-    int pin;
+    private double balance;
+    private int pin;
 
     /**
-     * Simply returns the pin
+     * Simply gets the pin
      * @param accPin        Account pin
      * @return              Returns the pin
      */
     public static int getPin(int accPin) {
         return accPin;
-
     } // end of getPin()
 
     /**
@@ -67,15 +66,21 @@ public class Account {
 
     } // end of withdraw()
 
-    Account acc = new Account();
+    /*
+     * takes a paramater to initialize the balance, along with
+     * calling createPin()
+     */
+    public Account(double iDeposit) {
+        this.balance = iDeposit;
+        createPin();
+    } // end of Account()
 
     /**
-     * Simply returns the account balance
-     * @param accBalance       Account balance
-     * @return                  Returns the account balance
+     * Simply gets the account balance
+     * @return      Returns the account balance
      */
-    public static double getBalance(double accBalance) {
-        return accBalance;
+    public double getBalance() {
+        return balance;
 
     } // end of getBalance()
 } // end of Account

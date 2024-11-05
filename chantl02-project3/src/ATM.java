@@ -21,7 +21,10 @@
 import java.util.*;
 
 public class ATM {
-    ATM atm = new ATM();
+    // takes an account type parameter to initialize the acc field
+    public ATM(Account iAcc) {
+
+    } // end of ATM()
     
     public void transaction() {
 
