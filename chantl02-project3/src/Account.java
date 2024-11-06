@@ -1,15 +1,15 @@
 /*
-* Treasure Chandler
-* CS 16000-01 – 02/03, Fall Semester 2024)
-* Project 3: At the ATM Machine
-*
-* Description:
-* The purpose of this class is to implement a computer
-* model for bank account transactinons at an ATM machine.
-* This following functions this class will program is
-* to open a new account, use an existing account that is
-* previously opened, and abort the process.
-*/
+ * Treasure Chandler
+ * CS 16000-01 – 02/03, Fall Semester 2024
+ * Project 3: At the ATM Machine
+ *
+ * Description:
+ * The purpose of this class is to implement a computer
+ * model for bank account transactinons at an ATM machine.
+ * This following functions this class will program is
+ * to open a new account, use an existing account that is
+ * previously opened, and abort the process.
+ */
 
 /*
  * The Account class represents the user's bank account. It
@@ -31,7 +31,7 @@ public class Account {
      * number
      */
     public void createPin() {
-        pin = rand.nextInt(10000);
+        pin = 1000 + rand.nextInt(9000);
     } // End of createPin()
 
     /**
@@ -54,12 +54,10 @@ public class Account {
      * Will display the current balance after certain events
      */
     public void showBalance() {
-        // Figure 8:
+        // Figures 8/13:
         title = "Balance";
-        message = "The current balance is\n" + balance;
-        JOptionPane.showMessageDialog(null, message);
-
-        // Figure 13:
+        message = "The current balance is\n" +
+                    String.format("$%.2f", balance);
         JOptionPane.showMessageDialog(null, message);
     } // End of showBalance()
 
@@ -69,7 +67,7 @@ public class Account {
      * @param uDeposit      User deposit
      */
     public void deposit(double uDeposit) {
-        this.balance = uDeposit;
+        this.balance = this.balance + uDeposit;
     } // End of deposit()
 
     /**
@@ -80,10 +78,11 @@ public class Account {
      * @param uWithdraw     User withdraw
      */
     public void withdraw(double uWithdraw) {
-        this.balance = uWithdraw;
+        this.balance = this.balance - uWithdraw;
 
+        // figure 16:
         if (uWithdraw > this.balance) {
-            System.out.println("The required amount exceeds the balance."
+            System.out.print("The required amount exceeds the balance."
                                 + "\nYou will now recieve your balance:");
         }
     } // End of withdraw()
@@ -97,7 +96,7 @@ public class Account {
         createPin();
 
         // figure 3:
-        message = "Take note of your PIN:" +
+        message = "Take note of your PIN:\n" +
                     String.format("%4d", getPin());
         JOptionPane.showMessageDialog(null, message);
     } // End of Account()

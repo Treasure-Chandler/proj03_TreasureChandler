@@ -1,24 +1,23 @@
 /*
-* Treasure Chandler
-* CS 16000-01 – 02/03, Fall Semester 2024)
-* Project 3: At the ATM Machine
-*
-* Description:
-* The purpose of this class is to implement a computer
-* model for bank account transactinons at an ATM machine.
-* This following functions this class will program is
-* to open a new account, use an existing account that is
-* previously opened, and abort the process.
-*/
-
-import java.util.*;             // Needed for the Scanner class
-import javax.swing.*;           // Needed for the JOptionPane class
+ * Treasure Chandler
+ * CS 16000-01 – 02/03, Fall Semester 2024
+ * Project 3: At the ATM Machine
+ *
+ * Description:
+ * The purpose of this class is to implement a computer
+ * model for bank account transactinons at an ATM machine.
+ * This following functions this class will program is
+ * to open a new account, use an existing account that is
+ * previously opened, and abort the process.
+ */
 
 /*
  * The Applications class will control the program's logic.
  * It communicates with the user regarding the choices the
  * user makes
  */
+import javax.swing.*;   // Needed for the JOptionPane class
+
 public class Applications {
     /**
      * 
@@ -46,7 +45,7 @@ public class Applications {
             title = "Client Window";
             message = "Would you like to open an account?" +
                         "\nThe minimum deposit is 100 dollars." +
-                        "\nIf you have an account, please click Cancel.";
+                        "\nIf you do not have an account, please click Cancel.";
             int accOpen = JOptionPane.showConfirmDialog(dialog, message, title,
                                                         JOptionPane.YES_NO_CANCEL_OPTION);
 
@@ -57,7 +56,7 @@ public class Applications {
                  */
                 message = "Please enter the amount to deposit." +
                             "\nPlease take note that a PIN code " +
-                            "will be issued for you";
+                            "will be issued for you:";
                 int deposit = Integer.parseInt(JOptionPane.showInputDialog(dialog, message, title,
                                                                             JOptionPane.WARNING_MESSAGE));
                 
@@ -76,20 +75,24 @@ public class Applications {
                 /*
                  * If the user clicks no, the program will be terminated
                  * 
-                 * figure 14:
+                 * Figure 14:
                  */
-                System.out.println(message);
+                System.out.println("The process will terminate." +
+                                    "\nThank you, goodbye!");
                 System.exit(0);
             } else if (acc == null) {
                 /*
                  * If the user does not have an account, then the client is assigned false
                  * 
-                 * figure 15:
+                 * Figure 15:
                  */
                 title = "Client Window";
-                message = "Sorry, you do not have an account.";
+                message = "Sorry, you do not have an account." +
+                            "\nThe program will terminate, and " +
+                            "it will need to be restarted.";
                 JOptionPane.showMessageDialog(dialog, message, title, JOptionPane.ERROR_MESSAGE);
                 client = false;
+                System.exit(0);
             } else {
                 /*
                  * Otherwise, the atm reference is instantiated, with ATM() taking the acc
@@ -108,8 +111,14 @@ public class Applications {
                                                                     JOptionPane.YES_NO_OPTION);
 
                 if (transactionPick == JOptionPane.NO_OPTION) {
-                    // If the user clicks no, transactionRequired is assigned false
+                    /*
+                     * If the user clicks no, transactionRequired is assigned falsem and
+                     * terminate the program.
+                     */
                     transactionRequired = false;
+                    System.out.println("The process will terminate." +
+                                        "\nThank you, goodbye!");
+                    System.exit(0);
                 } else {
                     // Otherwise, atm calls transaction()
                     atm.transaction();
