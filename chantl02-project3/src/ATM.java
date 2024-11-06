@@ -24,7 +24,7 @@ import javax.swing.*;   // Needed for the JOptionPane class
 public class ATM {
     // Variables declaration
     Account acc;
-    String title, message, userDorW;
+    String title, message, consoleMessage, userDorW;
     int userPin, withdrawAmount, depositAmount, depositTotal;
     Scanner keyboard = new Scanner(System.in);
 
@@ -48,8 +48,9 @@ public class ATM {
          * will terminate. Otherwise, the program will continue
          */
         if (userDorW == null) {
-            System.out.println("The process will terminate." +
-                        "\nThank you, goodbye!");
+            consoleMessage = "The process will terminate." +
+                                    "\nThank you, goodbye!";
+            System.out.println(consoleMessage);
             System.exit(0);
         } else {
             /*
@@ -58,7 +59,8 @@ public class ATM {
              */
             if (userDorW.equals("W") || userDorW.equals("w")) {
                 // Figure 6:
-                System.out.println("Please enter your PIN code here:");
+                consoleMessage = "Please enter your PIN code here:";
+                System.out.println(consoleMessage);
                 userPin = keyboard.nextInt();
 
                 // Checks for if the inputted pin equals the account pin
@@ -66,7 +68,7 @@ public class ATM {
                     // Figure 7:
                     message = "Please enter the amount you want to withdraw:";
                     withdrawAmount = Integer.parseInt(JOptionPane.showInputDialog(null,
-                            message));
+                                                                                    message));
 
                     // Calls withdraw() using withdrawAmount for the parameter
                     acc.withdraw(withdrawAmount);
@@ -79,7 +81,8 @@ public class ATM {
                      * 
                      * Figure 9:
                      */
-                    System.out.println("Wrong PIN; transaction aborted.");
+                    consoleMessage = "Wrong PIN; transaction aborted.";
+                    System.out.println(consoleMessage);
                     System.exit(0);
                 }
             }
@@ -98,7 +101,8 @@ public class ATM {
                 JOptionPane.showMessageDialog(null, message);
 
                 // Figure 12:
-                System.out.println("Enter the bills here:");
+                consoleMessage = "Enter the bills here:";
+                System.out.println(consoleMessage);
 
                 // This while loop reads the bills
                 while (true) {

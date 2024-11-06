@@ -24,7 +24,7 @@ public class Account {
     private double balance;
     private int pin;
     Random rand = new Random();
-    String title, message;
+    String title, message, consoleMessage;
 
     /**
      * Assigns a pin in the format of a random four digit
@@ -82,8 +82,9 @@ public class Account {
 
         // figure 16:
         if (uWithdraw > this.balance) {
-            System.out.print("The required amount exceeds the balance."
-                                + "\nYou will now recieve your balance:");
+            consoleMessage = "The required amount exceeds the balance."
+                                + "\nYou will now recieve your balance:";
+            System.out.print(consoleMessage);
         }
     } // End of withdraw()
 

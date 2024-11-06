@@ -28,7 +28,7 @@ public class Applications {
         Account acc = null;
         ATM atm = null;
         boolean client = true, transactionRequired;
-        String title, message;
+        String title, message, consoleMessage;
         /*
          * Due to the JOptionPane dialogue boxes sometimes appearing
          * behind all of your windows, you will need to declare a
@@ -77,8 +77,9 @@ public class Applications {
                  * 
                  * Figure 14:
                  */
-                System.out.println("The process will terminate." +
-                                    "\nThank you, goodbye!");
+                consoleMessage = "The process will terminate." +
+                                    "\nThank you, goodbye!";
+                System.out.println(consoleMessage);
                 System.exit(0);
             } else if (acc == null) {
                 /*
@@ -112,12 +113,13 @@ public class Applications {
 
                 if (transactionPick == JOptionPane.NO_OPTION) {
                     /*
-                     * If the user clicks no, transactionRequired is assigned falsem and
-                     * terminate the program.
+                     * If the user clicks no, transactionRequired is assigned false and
+                     * then the program will be terminated.
                      */
                     transactionRequired = false;
-                    System.out.println("The process will terminate." +
-                                        "\nThank you, goodbye!");
+                    consoleMessage = "The process will terminate." +
+                                    "\nThank you, goodbye!";
+                    System.out.println(consoleMessage);
                     System.exit(0);
                 } else {
                     // Otherwise, atm calls transaction()
